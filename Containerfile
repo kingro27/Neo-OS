@@ -23,7 +23,9 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
     /ctx/build.sh && \
-    /ctx/config.sh && \
+    ostree container commit
+
+RUN /ctx/config.sh && \
     ostree container commit
     
 ### LINTING
